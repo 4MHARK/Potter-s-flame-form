@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Application</title>
+    <style>
+        /* Your CSS styles here */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {}
+
+        .container {
+            max-width: 900px;
+            margin: 0px auto;
+        }
+
+        .apply-box {
+            max-width: 600px;
+            padding: 20px;
+            margin: 0px auto;
+            margin-top: 50px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            border-radius: 40px;
+        }
+
+        .title-small {
+            font-size: 20px;
+        }
+
+        .form-container {
+            margin-top: 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1));
+            gap: 20px;
+        }
+
+        .form-control {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            font-size: 15px;
+            margin-bottom: 5px;
+        }
+
+        input,
+        select,
+        textarea {
+            padding: 6px 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 15px;
+        }
+
+        input:focus {
+            outline-color: royalblue;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 20px;
+        }
+
+        button {
+            background-color: royalblue;
+            border: transparent solid 2px;
+            border-radius: 8px;
+        }
+
+        button:hover {
+            background-color: red;
+            border: 2px solid royalblue;
+            transition: 0.3s ease-out;
+            cursor: pointer;
+        }
+
+        .textarea-control {
+            grid-column: 1/ span 2;
+        }
+
+        .textarea-control textarea {
+            width: 100%;
+        }
+
+        @media(max-width:460px) {
+            .textarea-control {
+                grid-column: 1/ span 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="apply-box">
+            <h1>Job Application</h1>
+            <form id="jobApplicationForm" action="">
+                <div class="form-container">
+                    <div class="form-control">
+                        <label for="first-name">First name</label>
+                        <input type="text" name="first-name" id="first-name">
+                    </div>
+
+                    <div class="form-control">
+                        <label for="last-name">Last name</label>
+                        <input type="text" name="last-name" id="last-name">
+                    </div>
+
+                    <div class="form-control">
+                        <label for="email">Email</label>
+                        <input type="email" name="email" id="email">
+                    </div>
+
+                    <div class="form-control">
+                        <label for="job-role">Department</label>
+                        <select name="job-role" id="job-role">
+                            <option value="">Pick Department</option>
+                            <option value="IT">IT</option>
+                            <option value="Finance">Finance</option>
+                            <option value="HR">HR</option>
+                            <option value="Marketing">Marketing</option>
+                        </select>
+                    </div>
+
+                    <div class="textarea-control">
+                        <label for="address">Address</label>
+                        <textarea name="address" id="address" cols="30" rows="5"></textarea>
+                    </div>
+
+                    <div class="form-control">
+                        <label for="city">City</label>
+                        <input type="text" name="city" id="city">
+                    </div>
+
+                    <div class="form-control">
+                        <label for="date">Date</label>
+                        <input type="date" name="date" id="date" value="2022-10-24">
+                    </div>
+
+                    <div class="button-container">
+                        <button type="submit">Apply Now</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('jobApplicationForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            // Perform validation
+            if (validateForm()) {
+                this.submit();
+            }
+        });
+
+        function validateForm() {
+            let isValid = true;
+
+            // Check if required fields are filled out
+            const requiredFields = document.querySelectorAll('input[required], select[required], textarea[required]');
+            requiredFields.forEach(field => {
+                if (!field.value.trim()) {
+                    isValid = false;
+                    field.classList.add('error');
+                } else {
+                    field.classList.remove('error');
+                }
+            });
+
+            return isValid;
+        }
+    </script>
+</body>
+</html>
