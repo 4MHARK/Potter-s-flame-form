@@ -21,7 +21,6 @@ document.getElementById('jobApplicationForm').addEventListener('submit', (event)
         field.classList.remove('error');
       }
     });
-  
     return isValid;
   }
   
